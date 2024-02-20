@@ -1,7 +1,7 @@
 # app.py
 import streamlit as st
 from transcribe import record_and_save_audio, transcribe_audio, save_to_csv
-from langchain_chroma_llama import llama_langchain_chroma_integration, load_chroma_vector_store
+from LLM_embedding import llama_langchain_chroma_integration, load_chroma_vector_store
 
 # Function to get or create the session state
 def get_session_state():
