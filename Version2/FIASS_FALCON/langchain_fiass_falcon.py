@@ -6,11 +6,11 @@ from langchain.prompts import PromptTemplate
 from langchain.indexes.vectorstore import VectorstoreIndexCreator
 from langchain import HuggingFaceHub
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-import os
 from langchain.chains import RetrievalQA
 from langchain.schema import retriever
+import os
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = "YOUR_API_KEY"
 
 def create_vector_store(file_path):
     
