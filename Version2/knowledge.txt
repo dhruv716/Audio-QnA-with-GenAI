@@ -1,0 +1,10 @@
+ML A1 : Supervised learning involves training a model with labeled data to predict a specific outcome. Unsupervised learning involves finding patterns in unlabeled data without predefined categories. Example: Classifying emails as spam or not is supervised, while grouping customers based on shopping habits is unsupervised.
+ML A2 : Challenges of decision trees: Overfitting, sensitivity to noise, difficulty handling continuous variables. Limitations: Less effective for complex, non-linear relationships.
+ML A3 : Machine learning in recommendation systems: Analyzes user behavior and item features to create personalized recommendations.
+DS A1 : CRISP-DM methodology: Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, Deployment.
+DS A2 : Data cleaning and preprocessing: Essential for ensuring data quality and accuracy before analysis. Involves handling missing values, errors, inconsistencies, and outliers.
+DS A3 : Common statistical analysis techniques: Regression, correlation, hypothesis testing, ANOVA, clustering.
+DL A1 : CNNs vs. RNNs: CNNs excel at spatial data (images), RNNs at sequential data (text, time series).
+DL A2 : Deep learning applications: Image recognition, NLP, speech recognition, machine translation, anomaly detection, drug discovery.
+NLP A1 : Sentiment analysis techniques: Lexicon-based, machine learning, deep learning.
+NLP A2 : Challenges of ambiguity and context: NLP models often struggle with nuances of human language, requiring careful consideration of context and meaning.
