@@ -26,15 +26,15 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain.schema import SystemMessage
 from openai import OpenAI
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
 
 
-os.environ["OPENAI_API_KEY"] = "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"
+
+os.environ["OPENAI_API_KEY"] = "YOUR_API_KEY"
 client = OpenAI()
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-openai_api_key = "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"
+openai_api_key = "YOUR_API_KEY"
 
 
 def get_embedding(text, model="text-embedding-3-small"):
@@ -81,18 +81,14 @@ def load_chroma_vector_store():
             metadata = {"description": "Chroma Vector Store for audio transcripts"}
             collection = chroma_client.create_collection(name=collection_name, metadata=metadata)
 
-            # Load the document and split it into chunks
             loader = TextLoader("knowledge.txt")
             documents = loader.load()
 
-            # Split it into chunks
             text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
             docs = text_splitter.split_documents(documents)
-
-            # Create the embedding function
+            
             embedding_functions = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
-            # Load it into Chroma
             collection.add(
                 documents=[doc.page_content for doc in docs],
                 metadatas=[{"source": f"Document_{i}"} for i in range(len(docs))],
@@ -111,27 +107,21 @@ def load_chroma_vector_store():
         return None
 
 def create_chat_prompt_template():
-    # Define template messages
     template_messages = [
         SystemMessage(content="You are a helpful assistant."),
         MessagesPlaceholder(variable_name="chat_history"),
         HumanMessagePromptTemplate.from_template("{text}"),
     ]
-
-    # Create a chat prompt template from the template messages
     return ChatPromptTemplate.from_messages(template_messages)
 
 def llama_langchain_chroma_integration(csv_file_path, chroma_vector_store, openai_api_key):
     try:
         st.info("Initializing LangChain LLMChain...")
 
-        # Instantiate LLMChain with the correct parameters
         llm_chain = LLMChain(
             prompt=create_chat_prompt_template(),
             llm=RunnablePassthrough(type="huggingface", model_name="textgen-ada-002"),
         )
-
-        # Read the transcribed text from the CSV file
         with open(csv_file_path, "r") as csv_file:
             transcript_text = csv_file.read()
 
@@ -140,11 +130,9 @@ def llama_langchain_chroma_integration(csv_file_path, chroma_vector_store, opena
         st.write(transcript_text)
 
         st.subheader("OpenAI Embedding Search Results:")
-
-        # Get embeddings for the transcribed text using OpenAI
+        
         query_embedding = get_embedding(transcript_text, model="text-embedding-3-small")
 
-        # Your Chroma setup goes here
         chroma_vector_store = load_chroma_vector_store()
         if chroma_vector_store is None:
             st.error("Chroma Vector Store is not loaded. Aborting integration.")
@@ -158,12 +146,8 @@ def llama_langchain_chroma_integration(csv_file_path, chroma_vector_store, opena
             document_embeddings.append(embedding)
             document_contents.append(page_content)
             
-        
-
-        # Calculate similarity scores
         scores = [compute_similarity(query_embedding, doc_embedding) for doc_embedding in document_embeddings]
 
-        # Sort and get top 5 indices
         sorted_indices = sorted(range(len(scores)), key=lambda k: scores[k], reverse=True)
         top_5_indices = sorted_indices[:5]
 
@@ -172,16 +156,12 @@ def llama_langchain_chroma_integration(csv_file_path, chroma_vector_store, opena
             st.write(f"Document Content: {document_contents[top_5_indices[i]]}")
 
         st.subheader("LangChain-Llama Search Results:")
-        # Use Llama2Chat for processing the transcribed text
         model = Llama2Chat(llm_chain=llm_chain)
 
-        # Get the chat prompt template
         chat_prompt_template = create_chat_prompt_template()
 
-        # Format the chat prompt using the template
         chat_prompt = chat_prompt_template.format(chat_history=[], text=transcript_text)
 
-        # Execute the LangChain Llama integration
         response = model.run(prompt=chat_prompt)
         for message in response:
             st.write(f"Chat Message: {message}")
@@ -193,14 +173,12 @@ def llama_langchain_chroma_integration(csv_file_path, chroma_vector_store, opena
 
 def main():
     st.title("LangChain-Chroma-Llama Integration")
-    openai_api_key = "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"
+    openai_api_key = "YOUR_API_KEY"
 
-    # Load Chroma Vector Store
     chroma_vector_store = load_chroma_vector_store()
     print(chroma_vector_store)
 
     if chroma_vector_store:
-        # Perform integration
         csv_file_path = "transcription_output.csv"
         llama_langchain_chroma_integration(csv_file_path, chroma_vector_store, openai_api_key)
 
