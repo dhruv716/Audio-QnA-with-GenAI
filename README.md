@@ -1,4 +1,4 @@
-# 🌐 Speech-to-text and semantic search using various API's and pretrained models
+# 🌐 Speech-to-text and semantic search
 
 Combine the power of LangChain, Chroma, and Llama for audio transcription, semantic search, and natural language understanding. Leverage Whisper ASR, Chroma Vector Store, LangChain's Llama2Chat model, and extend the capabilities using Falcon and Faiss for enhanced retrieval and question answering.
 
@@ -13,8 +13,8 @@ This version is a simple Streamlit app for recording audio, transcribing it usin
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/langchain-chroma-llama.git
-    cd langchain-chroma-llama/version1
+    git clone https://github.com/dhruv716/Speech-to-text.git
+    cd Speech-to-text
     ```
 
 2. **Install the required dependencies:**
