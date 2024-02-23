@@ -39,6 +39,3 @@ def main():
         results = llama_langchain_chroma_integration(csv_file_path, chroma_vector_store, openai_api_key)
         st.header("Langchain-Chroma-Llama Integration Output:")
         st.write(results)
-
-if __name__ == "__main__":
-    main()
