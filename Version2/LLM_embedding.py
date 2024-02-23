@@ -181,6 +181,3 @@ def main():
     if chroma_vector_store:
         csv_file_path = "transcription_output.csv"
         llama_langchain_chroma_integration(csv_file_path, chroma_vector_store, openai_api_key)
-
-if __name__ == "__main__":
-    main()
