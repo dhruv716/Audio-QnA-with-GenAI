@@ -1,4 +1,4 @@
-# 🌐 Speech-to-text using various API's and pretrained models
+# 🌐 Speech-to-text and semantic search using various API's and pretrained models
 
 Combine the power of LangChain, Chroma, and Llama for audio transcription, semantic search, and natural language understanding. Leverage Whisper ASR, Chroma Vector Store, LangChain's Llama2Chat model, and extend the capabilities using Falcon and Faiss for enhanced retrieval and question answering.
 
