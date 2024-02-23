@@ -38,6 +38,3 @@ def main():
                 st.warning("Transcription error.")
         else:
             st.warning("Record audio first using the 'Record and Save Audio' button.")
-
-if __name__ == "__main__":
-    main()
