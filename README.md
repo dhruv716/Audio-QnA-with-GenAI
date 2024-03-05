@@ -13,8 +13,8 @@ This version is a simple Streamlit app for recording audio, transcribing it usin
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/dhruv716/Speech-to-text.git
-    cd Speech-to-text
+    git clone https://github.com/dhruv716/Audio-QnA-with-GenAI.git
+    cd Audio-QnA-with-GenAI
     ```
 
 2. **Install the required dependencies:**
